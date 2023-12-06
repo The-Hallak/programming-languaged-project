@@ -8,8 +8,15 @@
 <body>
     <?php
         include 'Config/DataBase.php';
-        $DB=new DataBase();
-        $DB->connect();
+
+        try{
+            $DB=new DataBase();
+            $DB->connect();
+            header("location:View/login.php");
+            exit;
+        }catch(Exception $e){
+            echo "could'n connect to database";
+        }
     ?>
 </body>
 </html>

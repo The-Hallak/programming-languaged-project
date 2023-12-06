@@ -11,6 +11,7 @@ class DataBase{
         try {
             $this->connection = new PDO("mysql:host={$this->host};", $this->username, $this->password);
             $this->connection->query("USE {$this->dbname}");
+            return $this->connection;
         }catch(PDOException $e){
             $str="SQLSTATE[42000]";
             if(substr($e->getMessage(),0,strlen($str))==$str){
@@ -18,7 +19,7 @@ class DataBase{
                 $this->connect();
                 return;
             }
-            echo $e->getMessage();
+            throw new Exception("could't connecto to database");
         }
     }
     
