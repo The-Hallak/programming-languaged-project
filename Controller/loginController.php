@@ -5,7 +5,7 @@ include "../Models/Person.php";
 $id=$_POST["userId"];
 $password=$_POST["password"];
 
-$dataBase=new DataBAse();
+$dataBase=new DataBase();
 $person=new Person($dataBase->connect());
 
 $person->id=$id;

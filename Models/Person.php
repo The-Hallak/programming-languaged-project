@@ -21,6 +21,17 @@ class Person{
         return $stmt;
     }
 
+    function addUser(){
+        try{
+            $sql ="INSERT INTO users(full_name,email,password,role) VALUES('{$this->name}','{$this->email}','{$this->password}','{$this->role}')";
+            $stmt=$this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt;
+        }catch(Exception $e){
+            return $sql;
+        }
+    }
+
 }
 
 ?>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="../style/admin.css">
+</head>
+
+<body>
+
+    <div class="form-container">
+        <form action="" method="post" id="adminForm">
+            <div class="form-field">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-field">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-field">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-field">
+                <label for="role">Role:</label>
+                <select id="role" name="role">
+                    <option value="2">Student</option>
+                    <option value="1">Teacher</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <input type="submit" value="add User" name="addUser">
+            </div>
+        </form>
+    </div>
+    <script src="../js/admin.js"></script>
+
+</body>
+
+</html>

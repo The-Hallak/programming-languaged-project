@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -8,33 +12,33 @@ body {
     margin: 0;
 }
 
-.login-container {
+.form-container {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-h2 {
-    text-align: center;
+.form-field {
+    margin-bottom: 10px;
 }
 
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group label {
+.label {
     display: block;
     margin-bottom: 5px;
 }
 
-.input-group input {
-    padding: 10px;
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
 
-button {
+input[type="submit"] {
     width: 100%;
     padding: 10px;
     border: none;
@@ -44,26 +48,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+input[type="submit"]:hover {
     background-color: #4cae4c;
-}
-
-#loginResult{
-    color:red;
-    margin-top:10px;
-    word-wrap: break-word;
-    overflow-wrap: break-word; 
-    text-align: center;
-}
-
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* For Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
 }

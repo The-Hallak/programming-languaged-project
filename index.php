@@ -12,7 +12,7 @@
         try{
             $DB=new DataBase();
             $DB->connect();
-            header("location:View/login.php");
+            header("location:View/login.html");
             exit;
         }catch(Exception $e){
             echo $e;
