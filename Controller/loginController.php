@@ -31,6 +31,7 @@ if(!password_verify($password,$resault["password"])){
 
 echo json_encode([
     "status"=>"success",
+    "role"=>$resault["role"],
 ]);
 
 ?>

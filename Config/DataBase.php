@@ -38,6 +38,7 @@ class DataBase{
             email VARCHAR(50) NOT NULL,
             password VARCHAR(65) NOT NULL,
             role INT NOT NULL,
+            project_id INT,
             PRIMARY KEY(user_id)
         );";
         $this->connection->query($sql);
@@ -56,15 +57,11 @@ class DataBase{
         );";
         $this->connection->query($sql);
 
-        $sql="CREATE TABLE student_project(
-            student_id INT NOT NULL,
-            project_id INT NOT NULL,
-            FOREIGN KEY(student_id)
-                REFERENCES users(user_id),
-            FOREIGN KEY(project_id)
-                REFERENCES projects(project_id)
-        );";
-         $this->connection->query($sql);
+        $sql="ALTER TABLE users 
+            ADD CONSTRAINT FK_student_project
+            FOREIGN KEY (project_id)
+                REFERENCES projects(project_id)";
+        $this->connection->query($sql);
 
         $adminPassword=password_hash("mohamad2002",PASSWORD_BCRYPT);
         $sql="INSERT INTO users(full_name,email,password,role) VALUES('mohamad alhallak','srdamaa777mmm@gmail.com','{$adminPassword}',0);";

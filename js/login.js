@@ -11,7 +11,19 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
             if(data["status"]=="failed"){
                 document.getElementById('loginResult').textContent = data["reason"];
             }else{
-                window.location.replace("../View/admin.php");
+                switch (data["role"]){
+                case 0:
+                    window.location.replace("../View/admin.php");
+                    break;
+                case 1:
+                    window.location.replace("../View/teacher.php");
+                    break;
+                case 2:
+                    window.location.replace("../View/student.php");
+                    break;
+                default:
+                    console.log("error undefined role");
+                }
             }
         }).catch(
             error => console.log("Error:" + error)
