@@ -11,9 +11,26 @@ $person=new Person($dataBase->connect());
 $person->id=$id;
 $resault=$person->login();
 if($resault->rowCount()==0){
-    $_SESSION["user not found"]=true;
-    header('location: ../View/login.php');
+    echo json_encode([
+        "status"=>"failed",
+        "reason"=>"no user was found with this id"
+    ]);
     exit;
 }
+$resault=$resault->fetch(PDO::FETCH_ASSOC);
+
+
+
+if(!password_verify($password,$resault["password"])){
+    echo json_encode([
+        "status"=>"failed",
+        "reason"=>"wrong passowrd"
+    ]);
+    exit;
+}
+
+echo json_encode([
+    "status"=>"success",
+]);
 
 ?>

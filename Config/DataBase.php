@@ -36,7 +36,7 @@ class DataBase{
             user_id INT AUTO_INCREMENT NOT NULL,
             full_name VARCHAR(20) NOT NULL,
             email VARCHAR(50) NOT NULL,
-            password VARCHAR(20) NOT NULL,
+            password VARCHAR(65) NOT NULL,
             role INT NOT NULL,
             PRIMARY KEY(user_id)
         );";
@@ -66,8 +66,8 @@ class DataBase{
         );";
          $this->connection->query($sql);
 
-
-        $sql="INSERT INTO users(full_name,email,password,role) VALUES('mohamad alhallak','srdamaa777mmm@gmail.com','34269123',0);";
+        $adminPassword=password_hash("mohamad2002",PASSWORD_BCRYPT);
+        $sql="INSERT INTO users(full_name,email,password,role) VALUES('mohamad alhallak','srdamaa777mmm@gmail.com','{$adminPassword}',0);";
         $this->connection->query($sql);
     }
 }

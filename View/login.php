@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="login-container">
-        <form action="../Controller/loginController.php" method="post">
+        <form action="../Controller/loginController.php" method="post" id ="loginForm">
             <h2>Login</h2>
             <div class="input-group">
                 <label for="userId">Id</label>
@@ -19,7 +19,9 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <button type="submit" name="login">Login</button>
+            <div id="loginResult" wordwrap="true"></div>
         </form>
     </div>
+    <script src="../js/login.js"></script>
 </body>
 </html>

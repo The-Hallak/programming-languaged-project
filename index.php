@@ -15,7 +15,7 @@
             header("location:View/login.php");
             exit;
         }catch(Exception $e){
-            echo "could'n connect to database";
+            echo $e;
         }
     ?>
 </body>
