@@ -16,3 +16,9 @@ document.getElementById("adminForm").addEventListener("submit", function (e) {
             this.reset();
         }).catch(alert(error));
 })
+
+document.getElementById("logoutButton").addEventListener("click",function(e){
+    if(window.confirm("are you sure you want to logout?")){
+        window.location.replace("../View/login.html");
+    }
+})
