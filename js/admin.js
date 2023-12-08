@@ -1,7 +1,7 @@
 document.getElementById("adminForm").addEventListener("submit", function (e) {
     e.preventDefault();
     let formData = new FormData(this);
-    formData.set("addUser","true");
+    formData.set("addUser", "true");
     fetch(
         '../Controller/adminController.php', {
         method: "POST",
@@ -14,11 +14,10 @@ document.getElementById("adminForm").addEventListener("submit", function (e) {
                 alert("user added successfully");
             }
             this.reset();
-        }).catch(alert(error));
-})
+        }).catch(error => alert(error));
+});
 
-document.getElementById("logoutButton").addEventListener("click",function(e){
-    if(window.confirm("are you sure you want to logout?")){
-        window.location.replace("../View/login.html");
-    }
-})
+import {logout} from './logout.js';
+
+
+document.getElementById("logoutButton").addEventListener("click", logout);

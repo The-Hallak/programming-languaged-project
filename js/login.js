@@ -1,8 +1,9 @@
 document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
     let formData = new FormData(this);
+    formData.append("login",true);
     fetch(
-        '../Controller/loginController.php', {
+        '../Controller/sharedController.php', {
         method: "POST",
         body: formData
     }).then(response => response.json())
@@ -15,7 +16,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
                         window.location.replace("../View/admin.html");
                         break;
                     case 1:
-                        window.location.replace("../View/teacher.php");
+                        window.location.replace("../View/teacher.html");
                         break;
                     case 2:
                         window.location.replace("../View/student.php");
@@ -25,6 +26,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
                 }
             }
         }).catch(
-            error => console.log("Error:" + error)
+            error => alert(error)
         );
 })
