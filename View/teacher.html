@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Project Management</title>
     <link rel="stylesheet" href="../style/teacher.css">
 </head>
+
 <body>
     <div class="container">
         <div class="projects-table">
@@ -21,7 +23,7 @@
         </div>
         <div class="vline"></div>
         <div class="project-form">
-            <form>
+            <form id="teacher_form">
                 <div class="form-field">
                     <label for="name">Project Name:</label>
                     <input type="text" id="name" name="name">
@@ -37,7 +39,7 @@
                     <input type="number" id="number_students" name="number_students"><br>
                 </div>
 
-                
+
                 <div class="toggle-div">
                     <div>
                         <label class="switch">
@@ -51,17 +53,14 @@
                 </div>
 
                 <!-- Dropdown for existing projects (initially hidden) -->
-                <select id="existing_projects" name="existing_projects" disabled>
-                    <option value="project1">Project 1</option>
-                    <option value="project2">Project 2</option>
-                    <!-- More existing projects as options -->
-                </select><br>
+                <select id="existing_projects" name="existing_projects" disabled></select><br>
 
-                <input type="submit" value="add project">
+                <input type="submit" value="Add project" id="teacher_sumbit">
             </form>
             <button class="logout" id="logoutButton">logout</button>
         </div>
     </div>
-    <script type ="module" src="../js/teacher.js"></script>
+    <script type="module" src="../js/teacher.js"></script>
 </body>
+
 </html>

@@ -39,7 +39,7 @@ function login() {
         exit;
     }
 
-    $_SESSION["userId"] = $id;
+    $_SESSION["user_id"] = $id;
 
     echo json_encode([
         "status" => "success",
@@ -69,10 +69,10 @@ function showProjects() {
     global $conn;
     try {
         $project = new Project($conn);
-        $respons = $project->showProjects();
+        $response= $project->showProjects();
         $resault = [];
         $idx = 0;
-        while ($row = $respons->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $response ->fetch(PDO::FETCH_ASSOC)) {
             $row["studentsNames"] = getStudentsNames($row["project_id"]);
             $resault[$idx] = $row;
             $idx++;
@@ -85,7 +85,7 @@ function showProjects() {
 
 function logout() {
     try {
-        unset($_SESSION["userId"]);
+        unset($_SESSION["user_id"]);
         echo json_encode(["status" => "success"]);
     } catch (Exception $e) {
         echo json_encode(["status" => "failed", "msg" => $e->getMessage()]);
