@@ -31,7 +31,6 @@ function getTeacherProjects() {
 
 function getProjectInfo() {
     try {
-        
         global $conn;
         $project=new Project($conn);
         $project->id=$_POST["project_id"];
@@ -43,9 +42,45 @@ function getProjectInfo() {
     }
 }
 
+function addProject(){
+    try{
+        global $conn;
+        $project=new Project($conn);
+        $project->name=$_POST["name"];
+        $project->description=$_POST["description"];
+        $project->teacherId=$_SESSION["user_id"];
+        $project->numberOfStudents=$_POST["number_students"];
+        $project->addProject();
+        echo json_encode(["status"=>"success"]);
+    }catch (Exception $e) {
+        echo json_encode(["status" => "failed", "msg" => $e->getMessage()]);
+    }
+}
+
+function modifyProject(){
+    try{
+        global $conn;
+        $project=new Project($conn);
+        $project->name=$_POST["name"];
+        $project->description=$_POST["description"];
+        $project->id=$_POST["existing_projects"];
+        $project->numberOfStudents=$_POST["number_students"];
+        $project->modifyProject();
+        echo json_encode(["status"=>"success"]);
+    }catch (Exception $e) {
+        echo json_encode(["status" => "failed", "msg" => $e->getMessage()]);
+    }
+}
+
 if (isset($_POST["show_teacher_projects"])) {
     getTeacherProjects();
 }
 if (isset($_POST["get_project_info"])) {
     getProjectInfo();
+}
+if(isset($_POST["add_project"])){
+    addProject();
+}
+if(isset($_POST["modify_project"])){
+    modifyProject();
 }

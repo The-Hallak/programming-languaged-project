@@ -63,6 +63,10 @@ class DataBase{
                 REFERENCES projects(project_id)";
         $this->connection->query($sql);
 
+        $sql="ALTER TABLE projects
+        ADD CONSTRAINT positave_number_of_students CHECK (remaining_number_of_student >= 0);";
+        $this->connection->query($sql);
+
         $adminPassword=password_hash("mohamad2002",PASSWORD_BCRYPT);
         $sql="INSERT INTO users(full_name,email,password,role) VALUES('mohamad alhallak','srdamaa777mmm@gmail.com','{$adminPassword}',0);";
         $this->connection->query($sql);

@@ -69,7 +69,7 @@ function getProjectInfo(project) {
         },
         body: new URLSearchParams({
             "get_project_info": true,
-            "project_id":project
+            "project_id": project
         })
     }).then(response => response.json())
         .then(data => {
@@ -100,15 +100,63 @@ function showTeacherProjects() {
             let projectList = document.getElementById("existing_projects");
             let responseData = data["projects"];
             Object.entries(responseData).forEach(([key, value]) => {
-                projectList.add(new Option(value,key));
+                projectList.add(new Option(value, key));
             })
 
 
         }).catch(error => alert(error));
 }
 
+function addProject() {
+    var form=document.getElementById("teacher_form");
+    var formData=new FormData(form);
+    formData.append("add_project",true);
+    fetch(
+        '../Controller/teacherController.php', {
+        method: "POST",
+        body: formData
+    }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data["status"] == "failed") {
+                alert(data["msg"]);
+            } else {
+                alert("project added successfully");
+                window.location.reload();   
+            }
+            form.reset();
+        }).catch(error => alert(error));
+}
+
+function modifyProject() {
+    var form=document.getElementById("teacher_form");
+    var formData=new FormData(form);
+    formData.append("modify_project",true);
+    fetch(
+        '../Controller/teacherController.php', {
+        method: "POST",
+        body: formData
+    }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data["status"] == "failed") {
+                alert(data["msg"]);
+            } else {
+                alert("project modified successfully");
+                window.location.reload();
+            }
+            form.reset();
+        }).catch(error => alert(error));
+}
+
+function submit(e) {
+    e.preventDefault();
+    document.getElementById('toggle_project_action').checked ? modifyProject() : addProject();
+}
+
 showProjects();
 showTeacherProjects();
-document.getElementById("logoutButton").addEventListener("click", logout)
+document.getElementById("logoutButton").addEventListener("click", logout);
 document.getElementById("toggle_project_action").addEventListener("click", toggleProjectList);
-document.getElementById('existing_projects').addEventListener('change', editProjectInfo);
+document.getElementById("existing_projects").addEventListener('change', editProjectInfo);
+document.getElementById("teacher_form"), addEventListener('submit', submit);
