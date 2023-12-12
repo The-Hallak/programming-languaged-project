@@ -86,4 +86,14 @@ class Project {
             throw $e;
         }
     }
+    function deleteProject(){
+        try {
+            $sql = "DELETE FROM {$this->tableName} WHERE project_id={$this->id}";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }

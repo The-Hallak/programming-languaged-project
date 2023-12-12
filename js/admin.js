@@ -11,7 +11,7 @@ document.getElementById("adminForm").addEventListener("submit", function (e) {
             if (data["status"] == "failed") {
                 alert(data["msg"]);
             } else {
-                alert("user added successfully");
+                alert("user added successfully with id="+data["user_id"]);
             }
             this.reset();
         }).catch(error => alert(error));

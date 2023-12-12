@@ -20,6 +20,29 @@ function toggleProjectList() {
     }
 }
 
+function deleteProject(id) {
+    if (confirm("are you sure you want to delete this project")) {
+        fetch(
+            '../Controller/teacherController.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                "delete_project": true,
+                "project_id": id
+            })
+        }).then(response => response.json())
+            .then(data => {
+                if (data["status"] == "failed") {
+                    alert("couldn't delete projects please try again\n" + data["msg"]);
+                    return;
+                }
+                window.location.reload();
+            }).catch(error => alert(error));
+    }
+}
+
 function showProjects() {
     fetch(
         '../Controller/sharedController.php', {
@@ -42,12 +65,18 @@ function showProjects() {
             let responseTable = data["table"];
             responseTable.forEach(responseRow => {
                 let row = table.insertRow(-1);
-                let idx = 0;
                 for (const key in responseRow) {
-                    let cell = row.insertCell(idx);
-                    idx++;
+                    let cell = row.insertCell(-1);
                     cell.innerHTML = responseRow[key];
                 }
+                let cell = row.insertCell(-1);
+                let button = document.createElement('button');
+                button.innerHTML = "Delete";
+                button.className = "delete-btn";
+                button.addEventListener("click", function () {
+                    deleteProject(responseRow["project_id"]);
+                })
+                cell.appendChild(button);
             })
 
         }).catch(error => alert(error));
@@ -108,9 +137,9 @@ function showTeacherProjects() {
 }
 
 function addProject() {
-    var form=document.getElementById("teacher_form");
-    var formData=new FormData(form);
-    formData.append("add_project",true);
+    var form = document.getElementById("teacher_form");
+    var formData = new FormData(form);
+    formData.append("add_project", true);
     fetch(
         '../Controller/teacherController.php', {
         method: "POST",
@@ -122,16 +151,16 @@ function addProject() {
                 alert(data["msg"]);
             } else {
                 alert("project added successfully");
-                window.location.reload();   
+                window.location.reload();
             }
             form.reset();
         }).catch(error => alert(error));
 }
 
 function modifyProject() {
-    var form=document.getElementById("teacher_form");
-    var formData=new FormData(form);
-    formData.append("modify_project",true);
+    var form = document.getElementById("teacher_form");
+    var formData = new FormData(form);
+    formData.append("modify_project", true);
     fetch(
         '../Controller/teacherController.php', {
         method: "POST",

@@ -31,6 +31,9 @@ class Person {
             $sql = "INSERT INTO {$this->tableName}(full_name,email,password,role) VALUES('{$this->name}','{$this->email}','{$this->password}','{$this->role}')";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
+            $sql="SELECT LAST_INSERT_ID() as user_id;";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
             return $stmt;
         } catch (Exception $e) {
             throw $e;
@@ -49,6 +52,16 @@ class Person {
     function dropAddProject(){
         try {
             $sql = "UPDATE {$this->tableName} SET project_id = {$this->projectId} WHERE user_id={$this->id}";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+    function deleteProject(){
+        try {
+            $sql = "UPDATE {$this->tableName} SET project_id = null WHERE project_id ={$this->projectId}";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt;

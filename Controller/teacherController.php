@@ -2,6 +2,7 @@
 
 include "../Config/DataBase.php";
 include "../Models/Project.php";
+include "../Models/Person.php";
 
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -72,6 +73,21 @@ function modifyProject(){
     }
 }
 
+function deleteProject(){
+    try{
+        global $conn;
+        $person=new Person($conn);
+        $person->projectId=$_POST["project_id"];
+        $person->deleteProject();
+        $project=new Project($conn);
+        $project->id=$_POST["project_id"];
+        $project->deleteProject();
+        echo json_encode(["status"=>"success"]);
+    }catch (Exception $e) {
+        echo json_encode(["status" => "failed", "msg" => "addProject".$e->getMessage()]);
+    }
+}
+
 if (isset($_POST["show_teacher_projects"])) {
     getTeacherProjects();
 }
@@ -83,4 +99,7 @@ if(isset($_POST["add_project"])){
 }
 if(isset($_POST["modify_project"])){
     modifyProject();
+}
+if(isset($_POST["delete_project"])){
+    deleteProject();
 }

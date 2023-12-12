@@ -18,9 +18,10 @@ function addUser(){
         $person->email=$email;
         $person->password=$password;
         $person->role=$role;
-        $resault=$person->addUser();
+        $resault=$person->addUser()->fetch(PDO::FETCH_ASSOC);
         echo json_encode([
-            "status"=>"success"
+            "status"=>"success",
+            "user_id"=>$resault["user_id"]
         ]);
         exit;
     }catch(Exception $e){
