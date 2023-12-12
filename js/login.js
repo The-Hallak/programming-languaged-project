@@ -19,7 +19,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
                         window.location.replace("../View/teacher.html");
                         break;
                     case 2:
-                        window.location.replace("../View/student.php");
+                        window.location.replace("../View/student.html");
                         break;
                     default:
                         console.log("error undefined role");

@@ -25,7 +25,7 @@ function getTeacherProjects() {
         }
         echo json_encode(["status" => "success", "projects" => $result]);
     } catch (Exception $e) {
-        echo json_encode(["status" => "failed", "msg" => $e->getMessage()]);
+        echo json_encode(["status" => "failed", "msg" => "getTeacherProjects".$e->getMessage()]);
     }
 }
 
@@ -38,7 +38,7 @@ function getProjectInfo() {
         $result=$response->fetch(PDO::FETCH_ASSOC);
         echo json_encode(["status"=>"success","info"=>$result]);
     } catch (Exception $e) {
-        echo json_encode(["status" => "failed", "msg" => $e->getMessage()]);
+        echo json_encode(["status" => "failed", "msg" => "getProjectInfo".$e->getMessage()]);
     }
 }
 
@@ -53,7 +53,7 @@ function addProject(){
         $project->addProject();
         echo json_encode(["status"=>"success"]);
     }catch (Exception $e) {
-        echo json_encode(["status" => "failed", "msg" => $e->getMessage()]);
+        echo json_encode(["status" => "failed", "msg" => "addProject".$e->getMessage()]);
     }
 }
 
@@ -68,7 +68,7 @@ function modifyProject(){
         $project->modifyProject();
         echo json_encode(["status"=>"success"]);
     }catch (Exception $e) {
-        echo json_encode(["status" => "failed", "msg" => $e->getMessage()]);
+        echo json_encode(["status" => "failed", "msg" => "modifyProject".$e->getMessage()]);
     }
 }
 

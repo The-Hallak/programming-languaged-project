@@ -17,7 +17,7 @@ class Person {
 
     function login() {
         try {
-            $sql = "SELECT role,password FROM {$this->tableName} WHERE user_id={$this->id}";
+            $sql = "SELECT role,password,project_id FROM {$this->tableName} WHERE user_id={$this->id}";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt;
@@ -39,6 +39,16 @@ class Person {
     function getStudentsNames() {
         try {
             $sql = "SELECT full_name FROM {$this->tableName} WHERE project_id={$this->projectId}";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+    function dropAddProject(){
+        try {
+            $sql = "UPDATE {$this->tableName} SET project_id = {$this->projectId} WHERE user_id={$this->id}";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt;

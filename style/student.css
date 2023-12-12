@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 95%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.choose-btn,
+.drop-btn {
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.choose-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.drop-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Additional styling can be added as needed */
+.logout {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.logout:hover,.choose-btn:hover {
+    background-color: #45a049;
+}
+
+.logout {
+    /* margin-top: 5px; */
+    margin:10px calc(50% - 38px );
+}

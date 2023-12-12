@@ -64,8 +64,20 @@ class Project {
         try {
             $sql = "UPDATE {$this->tableName}
             SET name = '{$this->name}',description='{$this->description}'
-            ,number_of_student = '{$this->numberOfStudents}'
             ,remaining_number_of_student = remaining_number_of_student + {$this->numberOfStudents} - number_of_student 
+            ,number_of_student = '{$this->numberOfStudents}'
+            WHERE project_id={$this->id}";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+    function addRemoveStudent($inc){
+        try {
+            $sql = "UPDATE {$this->tableName}
+            SET  remaining_number_of_student=remaining_number_of_student {$inc}
             WHERE project_id={$this->id}";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
